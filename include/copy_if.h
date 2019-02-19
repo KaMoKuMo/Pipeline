@@ -1,6 +1,8 @@
 #ifndef __COPY_IF__H
 #define __COPY_IF__H
 
+#include "transformation_with_filter.h"
+
 namespace pipeline {
 
 template <typename InputIterator, typename OutputIterator, typename... Fs>

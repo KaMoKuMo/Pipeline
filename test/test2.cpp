@@ -34,15 +34,13 @@ int main() {
   pipeline::copy_if(v.begin(), v.end(), std::back_inserter(v3),
                     pipeline::makeFilter([](auto x) { return x > 2; }),
                     pipeline::makeFilter([](auto y) { return y < 10; }));
-
-/* The following will not compile, since the lambda wasn't wrapped. The error
- * message is thought to be complete. (Notify if you think differently)
-
-  pipeline::copy_if(v.begin(), v.end(), std::back_inserter(v3),
-                    [](auto x) { return x > 2; });
-
-										*/
   print(v3);
+
+// The following will not compile, since the lambda wasn't wrapped. The error
+// message is thought to be complete. (Notify if you think differently)
+
+//pipeline::copy_if(v.begin(), v.end(), std::back_inserter(v3),
+//                  [](auto x) { return x > 2; });
 
   return 1;
 }
