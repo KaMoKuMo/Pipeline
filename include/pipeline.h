@@ -1,5 +1,5 @@
-#ifndef __TRANSFORMATION_WITH_FILTER__H
-#define __TRANSFORMATION_WITH_FILTER__H
+#ifndef __PIPELINE__H
+#define __PIPELINE__H
 
 #include "detail/functor_wrapper.h"
 #include "detail/seqCall.h"
@@ -20,8 +20,15 @@ makeTransformation(T x)
 	return TrafoX<T>(x);
 }
 
+template<typename T>
+auto
+makeTrafoThroughPtr(T x)
+{
+	return PtrFilter<T>(x);
+}
+
 template <typename InputIterator, typename OutputIterator, typename... Fs>
-auto transform_with_filter(InputIterator f, InputIterator l, OutputIterator o,
+auto pipeline(InputIterator f, InputIterator l, OutputIterator o,
                            Fs... fs)
 {
 	while(f != l)

@@ -17,6 +17,16 @@ private:
   T t_;
 };
 
+template <typename T> struct PtrFilter : public BaseWrapper<T>{
+	constexpr PtrFilter(T x) : BaseWrapper<T>(x) {}
+};
+template <typename T> struct is_ptr_filter{
+	static constexpr bool value = false;
+};
+template <typename T> struct is_ptr_filter<PtrFilter<T>>{
+	static constexpr bool value = true;
+};
+
 template <typename T> struct FilterX : public BaseWrapper<T> {
   constexpr FilterX(T x) : BaseWrapper<T>(x) {}
 };
