@@ -19,16 +19,22 @@ private:
 
 template <typename T> struct FilterX : public BaseWrapper<T> {
   constexpr FilterX(T x) : BaseWrapper<T>(x) {}
-
-  static constexpr bool is_trafo = false;
-  static constexpr bool is_filter = true;
+};
+template <typename T> struct is_filter{
+	static constexpr bool value = false;
+};
+template <typename T> struct is_filter<FilterX<T>>{
+	static constexpr bool value = true;
 };
 
 template <typename T> struct TrafoX : public BaseWrapper<T> {
   constexpr TrafoX(T x) : BaseWrapper<T>(x) {}
-
-  static constexpr bool is_trafo = true;
-  static constexpr bool is_filter = false;
+};
+template <typename T> struct is_transformation{
+	static constexpr bool value = false;
+};
+template <typename T> struct is_transformation<TrafoX<T>>{
+	static constexpr bool value = true;
 };
 
 } // namespace pipeline
